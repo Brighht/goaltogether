@@ -9,3 +9,10 @@ class Players(models.Model):
     team_name  = models.CharField(max_length=100)
     dateofbirth = models.DateField()
     date_joined = models.DateField()
+
+class Teams(models.Model):
+    team_name = models.CharField(max_length=100)
+    team_logo = models.ImageField
+    team_est = models.DateField() #enter date manually
+    team_stadium_name = models.CharField(max_length=100)
+    
