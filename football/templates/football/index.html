@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier League Stats</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>GOALTOEGETHER</title>
+    <link rel="stylesheet" href="{% static 'football/styles.css' %}">
 </head>
 <body>
     <nav>
@@ -14,12 +14,11 @@
                 <div class="flex">
                     <div class="logo">Premier League</div>
                     <div class="nav-links">
-                        <a href="/" class="nav-link active">Table</a>
-                        <a href="/stats.html" class="nav-link">Stats</a>
-                        <a href="/teams.html" class="nav-link">Teams</a>
-                        <a href="/blog.html" class="nav-link">Blog</a>
-                        <a href="/banter.html" class="nav-link">Banter</a>
-                        
+                        <a href="{% url 'index' %}" class="nav-link active">Table</a>
+                        <a href="{% url 'stats' %}" class="nav-link">Stats</a>
+                        <a href="{% url 'teams' %}" class="nav-link">Teams</a>
+                        <a href="{% url 'blog' %}" class="nav-link">Blog</a>
+                        <a href="{% url 'banter' %}" class="nav-link">Banter</a>
                     </div>
                 </div>
             </div>
