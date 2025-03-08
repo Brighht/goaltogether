@@ -8,6 +8,16 @@ def home(request):
 def stats(request):
     return render(request, 'football/stats.html')
 
+def teams(request):
+    return render(request, 'football/teams.html')
+
+def blog(request):
+    return render(request, 'football/blog.html')
+
+def banter(request):
+    return render(request, 'football/banter.html')
+
+
 #algo for adding new user
 # def add_new_user(new_username):
 #     users = {}
