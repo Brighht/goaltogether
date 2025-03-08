@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Banter</title>
+    <script src="{% static 'https://cdn.tailwindcss.com' %}"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div class="flex items-center py-4">
+                        <span class="font-bold text-xl text-gray-800">Premier League</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <a href="/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Table</a>
+                        <a href="/stats.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Stats</a>
+                        <a href="/teams.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Teams</a>
+                        <a href="/blog.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+                        <a href="/banter.html" class="py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-semibold">Banter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">Banter Zone</h1>
+            
+            <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
+                <form class="space-y-4">
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Post your banter</label>
+                        <textarea id="message" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Post</button>
+                </form>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-semibold text-blue-600">Liverpool Fan</span>
+                                <span class="text-gray-500 text-sm">2 hours ago</span>
+                            </div>
+                            <p class="mt-2 text-gray-700">Top of the league! Man City in the mud! 🔴</p>
+                            <div class="mt-2 flex items-center space-x-4">
+                                <button class="text-gray-500 hover:text-blue-500">👍 24</button>
+                                <button class="text-gray-500 hover:text-blue-500">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-semibold text-blue-600">Arsenal Supporter</span>
+                                <span class="text-gray-500 text-sm">3 hours ago</span>
+                            </div>
+                            <p class="mt-2 text-gray-700">Still in the title race! Watch out Liverpool! 💪</p>
+                            <div class="mt-2 flex items-center space-x-4">
+                                <button class="text-gray-500 hover:text-blue-500">👍 18</button>
+                                <button class="text-gray-500 hover:text-blue-500">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-semibold text-blue-600">City Fan</span>
+                                <span class="text-gray-500 text-sm">5 hours ago</span>
+                            </div>
+                            <p class="mt-2 text-gray-700">Game in hand FC 😎 We're coming for that top spot! 🔵</p>
+                            <div class="mt-2 flex items-center space-x-4">
+                                <button class="text-gray-500 hover:text-blue-500">👍 15</button>
+                                <button class="text-gray-500 hover:text-blue-500">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

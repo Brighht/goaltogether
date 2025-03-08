@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Stats</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="flex">
+                <div class="flex">
+                    <div class="logo">Premier League</div>
+                    <div class="nav-links">
+                        <a href="/" class="nav-link active">Table</a>
+                        <a href="{% url /stats.html %}" class="nav-link">Stats</a>
+                        <a href="/teams.html" class="nav-link">Teams</a>
+                        <a href="/blog.html" class="nav-link">Blog</a>
+                        <a href="/banter.html" class="nav-link">Banter</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <h1>Premier League Table 2024/25</h1>
+            
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Club</th>
+                            <th>MP</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GF</th>
+                            <th>GA</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: rgb(59, 130, 246)">1</td>
+                            <td style="font-weight: 500">Liverpool</td>
+                            <td>24</td>
+                            <td>16</td>
+                            <td>6</td>
+                            <td>2</td>
+                            <td>53</td>
+                            <td>24</td>
+                            <td>29</td>
+                            <td style="font-weight: bold">54</td>
+                        </tr>
+                        <tr>
+                            <td style="color: rgb(59, 130, 246)">2</td>
+                            <td style="font-weight: 500">Man City</td>
+                            <td>23</td>
+                            <td>15</td>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>51</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td style="font-weight: bold">49</td>
+                        </tr>
+                        <tr>
+                            <td style="color: rgb(59, 130, 246)">3</td>
+                            <td style="font-weight: 500">Arsenal</td>
+                            <td>24</td>
+                            <td>15</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>47</td>
+                            <td>22</td>
+                            <td>25</td>
+                            <td style="font-weight: bold">49</td>
+                        </tr>
+                        <tr style="background-color: rgb(239, 246, 255)">
+                            <td style="color: rgb(59, 130, 246)">4</td>
+                            <td style="font-weight: 500">Tottenham</td>
+                            <td>23</td>
+                            <td>13</td>
+                            <td>4</td>
+                            <td>6</td>
+                            <td>47</td>
+                            <td>36</td>
+                            <td>11</td>
+                            <td style="font-weight: bold">43</td>
+                        </tr>
+                        <tr>
+                            <td style="color: rgb(59, 130, 246)">5</td>
+                            <td style="font-weight: 500">Aston Villa</td>
+                            <td>24</td>
+                            <td>13</td>
+                            <td>4</td>
+                            <td>7</td>
+                            <td>48</td>
+                            <td>35</td>
+                            <td>13</td>
+                            <td style="font-weight: bold">43</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: rgb(239, 246, 255); border: 1px solid rgb(229, 231, 235); width: 12px; height: 12px; border-radius: 2px; display: inline-block; margin-right: 8px;"></div>
+                        <span style="color: rgb(75, 85, 99)">Champions League</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -42,8 +42,8 @@ class Messages(models.Model):
     likes = models.IntegerField(default=0)
     
 class Responses(models.Model):
-    messages = models.ForeignKey(Messages)
-    sender = models.ForeignKey(User)
+    messages = models.ForeignKey(Messages, on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
     response_text = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now=True)
     likes = models.IntegerField(default=0)

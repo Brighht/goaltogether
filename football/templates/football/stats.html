@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Stats</title>
+    <script src="{% static 'https://cdn.tailwindcss.com' %}"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div class="flex items-center py-4">
+                        <span class="font-bold text-xl text-gray-800">Premier League</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <a href="/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Table</a>
+                        <a href="/stats.html" class="py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-semibold">Stats</a>
+                        <a href="/teams.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Teams</a>
+                        <a href="/blog.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+                        <a href="/banter.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Banter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">League Statistics</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Top Scorers</h2>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Erling Haaland</span>
+                            <span class="font-bold">17 goals</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Mohamed Salah</span>
+                            <span class="font-bold">15 goals</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Ollie Watkins</span>
+                            <span class="font-bold">13 goals</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Most Assists</h2>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Ollie Watkins</span>
+                            <span class="font-bold">10 assists</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Pascal Gross</span>
+                            <span class="font-bold">9 assists</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-800">Bukayo Saka</span>
+                            <span class="font-bold">8 assists</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

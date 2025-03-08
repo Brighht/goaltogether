@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Teams</title>
+    <script src="{% static 'https://cdn.tailwindcss.com' %}"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div class="flex items-center py-4">
+                        <span class="font-bold text-xl text-gray-800">Premier League</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <a href="/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Table</a>
+                        <a href="/stats.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Stats</a>
+                        <a href="/teams.html" class="py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-semibold">Teams</a>
+                        <a href="/blog.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+                        <a href="/banter.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Banter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">Premier League Teams</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Liverpool</h2>
+                    <p class="text-gray-600">Anfield</p>
+                    <p class="text-gray-600">Manager: Jürgen Klopp</p>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Manchester City</h2>
+                    <p class="text-gray-600">Etihad Stadium</p>
+                    <p class="text-gray-600">Manager: Pep Guardiola</p>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Arsenal</h2>
+                    <p class="text-gray-600">Emirates Stadium</p>
+                    <p class="text-gray-600">Manager: Mikel Arteta</p>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Tottenham</h2>
+                    <p class="text-gray-600">Tottenham Hotspur Stadium</p>
+                    <p class="text-gray-600">Manager: Ange Postecoglou</p>
+                </div>
+                
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Aston Villa</h2>
+                    <p class="text-gray-600">Villa Park</p>
+                    <p class="text-gray-600">Manager: Unai Emery</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
