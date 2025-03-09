@@ -20,6 +20,9 @@ nav .container {
 nav .flex {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    height: 100%; /* Use full height of nav */
+    min-height: 4rem; /* Consistent height */
 }
 
 nav .logo {
@@ -248,4 +251,58 @@ tr:hover {
 
 .banter-action:hover {
     color: rgb(59, 130, 246);
+}
+
+/* Profile section styles */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.profile-username {
+    color: rgb(75, 85, 99);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.profile-link {
+    color: rgb(59, 130, 246);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    color: rgb(37, 99, 235);
+    background-color: rgb(239, 246, 255);
+    border-radius: 0.25rem;
+}
+
+/* Adjust navbar flex to accommodate profile */
+nav .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    nav .flex {
+        flex-wrap: wrap;
+    }
+    
+    .profile-section {
+        margin-left: auto;
+    }
+    
+    .nav-links {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
 }

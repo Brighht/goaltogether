@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 
 # Create your views here.
+def login(request):
+    return render(request, 'football/login.html')
 def home(request):
     return render(request,'football/index.html')
 
@@ -16,7 +18,8 @@ def blog(request):
 
 def banter(request):
     return render(request, 'football/banter.html')
-
+def logout(request):
+    return render(request, 'football/logout.html')
 
 #algo for adding new user
 # def add_new_user(new_username):
