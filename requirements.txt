@@ -1,0 +1,8 @@
+asgiref==3.8.1          # Django dependency
+certifi==2024.12.14     # For secure API calls (e.g., standings)
+charset-normalizer==3.4.1 # For requests encoding
+Django==5.1.4           # Core framework
+idna==3.10              # For API requests
+requests==2.32.3        # For fetching API data (standings)
+sqlparse==0.5.3         # Django dependency
+urllib3==2.3.0          # For requests
