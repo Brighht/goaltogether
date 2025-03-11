@@ -115,6 +115,10 @@ tr:hover {
     background-color: rgb(249, 250, 251);
 }
 
+.team-crest{
+    height: 18px;
+}
+
 /* Grid layouts */
 .grid {
     display: grid;
