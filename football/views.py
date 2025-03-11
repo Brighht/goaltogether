@@ -6,8 +6,15 @@ from . import api_call
 def login(request):
     return render(request, 'football/login.html')
 def home(request):
-    league_standing = api_call.get_standings(2014)
-    return render(request,'football/index.html', {'standing':league_standing} )
+    league_id = "PD"
+    laliga_standing = api_call.get_standings(2014, 2024)
+    epl_standing = api_call.get_standings(2021, 2024)
+    print("La Liga Standing:", laliga_standing)
+    print("EPL Standing:", epl_standing)
+    return render(request, 'football/index.html', {
+        'la_liga_standing': laliga_standing,
+        'epl_standing': epl_standing
+    })
 
 def stats(request):
     return render(request, 'football/stats.html')

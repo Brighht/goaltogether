@@ -1,7 +1,7 @@
 import requests
 from django.conf import settings
 
-def get_standings(league_id):
+def get_standings(league_id, season):
     """
     Fetch current league standings from Football-API.
     Args:
@@ -33,18 +33,70 @@ def get_standings(league_id):
         "code": "ITA",
         "flag": "https://crests.football-data.org/784.svg"
     },
+    {
+      "id": 2002,
+      "area": {
+        "id": 2088,
+        "name": "Germany",
+        "code": "DEU",
+        "flag": "https://crests.football-data.org/759.svg"
+      },
+      "name": "Bundesliga",
+      "code": "BL1",
+      "type": "LEAGUE",
+      "emblem": "https://crests.football-data.org/BL1.png",
+      "plan": "TIER_ONE",
+      "currentSeason": {
+        "id": 2308,
+        "startDate": "2024-08-23",
+        "endDate": "2025-05-17",
+        "currentMatchday": 25,
+        "winner": null
+      },
+      "numberOfAvailableSeasons": 62,
+      "lastUpdated": "2024-09-13T16:48:00Z"
+    },
+    {
+      "id": 2021,
+      "area": {
+        "id": 2072,
+        "name": "England",
+        "code": "ENG",
+        "flag": "https://crests.football-data.org/770.svg"
+      },
+      "name": "Premier League",
+      "code": "PL",
+      "type": "LEAGUE",
+      "emblem": "https://crests.football-data.org/PL.png",
+      "plan": "TIER_ONE",
+      "currentSeason": {
+        "id": 2287,
+        "startDate": "2024-08-16",
+        "endDate": "2025-05-25",
+        "currentMatchday": 28,
+        "winner": null
+      },
+      "numberOfAvailableSeasons": 126,
+      "lastUpdated": "2024-09-13T16:51:24Z"
+    },
 
     """
-    url = f'http://api.football-data.org/v4/competitions/{league_id}/standings'
+    url = f'http://api.football-data.org/v4/competitions/{league_id}//standings?season={season}' #
     api_key = settings.FOOTBALL_DATA_KEY
-    headers = { 'X-Auth-Token': api_key }
-    response = requests.get(url=url, headers=headers)
-
-    if response.status_code == 200:
-        try:
-            api_response = response.json()
-            league_standing = api_response["standings"][0]["table"]
-
-        except requests.RequestException as e:
-            print(f"Error fetching stadings {e}")
-    return league_standing
+    headers = {'X-Auth-Token': api_key}
+    
+    try:
+        response = requests.get(url=url, headers=headers)
+        response.raise_for_status()  # Raises exception for 4xx/5xx errors
+        
+        api_response = response.json()
+        league_standing = api_response.get("standings", [{}])[0].get("table", [])
+        print(f"League {league_id} - Status: {response.status_code}, Table: {league_standing}")
+        return league_standing
+    
+    except requests.RequestException as e:
+        print(f"Error fetching standings for league {league_id}: {e}")
+        return []
+    except (KeyError, IndexError, ValueError) as e:
+        print(f"Error parsing standings for league {league_id}: {e}")
+        return []
