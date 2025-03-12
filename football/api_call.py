@@ -91,7 +91,7 @@ def get_standings(league_id, season):
         
         api_response = response.json()
         league_standing = api_response.get("standings", [{}])[0].get("table", [])
-        print(f"League {league_id} - Status: {response.status_code}, Table: {league_standing}")
+        # print(f"League {league_id} - Status: {response.status_code}, Table: {league_standing}")
         return league_standing
     
     except requests.RequestException as e:

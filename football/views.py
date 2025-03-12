@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from . import api_call
+from .import api_call
+import time
 
 # Create your views here.
 def login(request):
@@ -8,13 +9,12 @@ def login(request):
 def home(request):
     league_id = "PD"
     laliga_standing = api_call.get_standings(2014, 2024)
+    time.sleep(2)
     epl_standing = api_call.get_standings(2021, 2024)
-    print("La Liga Standing:", laliga_standing)
-    print("EPL Standing:", epl_standing)
     return render(request, 'football/index.html', {
         'la_liga_standing': laliga_standing,
         'epl_standing': epl_standing
-    })
+    })  
 
 def stats(request):
     return render(request, 'football/stats.html')
