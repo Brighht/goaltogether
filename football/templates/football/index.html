@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,29 +9,31 @@
     <link rel="stylesheet" href="{% static 'football/styles.css' %}">
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="flex">
-                <div class="flex">
-                    <div class="logo">{{ logo }}</div>
-                    <div class="nav-links">
-                        <a href="{% url 'index' %}" class="nav-link active">Table</a>
-                        <a href="{% url 'stats' %}" class="nav-link">Stats</a>
-                        <a href="{% url 'teams' %}" class="nav-link">Teams</a>
-                        <a href="{% url 'blog' %}" class="nav-link">Blog</a>
-                        <a href="{% url 'banter' %}" class="nav-link">Banter</a>
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-7">
+                    <div class="flex items-center py-4">
+                        <span class="font-bold text-xl text-gray-800">{{ logo }}</span>
                     </div>
-                    <div class="profile-section">
-                        {% if user.is_authenticated %}
-                            <span class="profile-username">{{ user.username }}</span>
-                            <a href="{% url 'logout' %}" class="profile-link">Logout</a>
-                        {% else %}
-                            <a href="{% url 'login' %}" class="profile-link">Login</a>
-                        {% endif %}
+                    <div class="flex items-center space-x-1">
+                        <a href="{% url 'index' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Table</a>
+                        <a href="{% url 'stats' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/stats/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Stats</a>
+                        <a href="{% url 'teams' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/teams/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Teams</a>
+                        <a href="{% url 'blog' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/blog/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Blog</a>
+                        <a href="{% url 'banter' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/banter/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Banter</a>
                     </div>
                 </div>
+                <div class="profile-section flex items-center space-x-3">
+                    {% if user.is_authenticated %}
+                        <span class="profile-username text-gray-600 font-medium text-sm">{{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="profile-link text-blue-500 font-semibold text-sm px-3 py-1 hover:bg-blue-50 rounded transition duration-300">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="profile-link text-blue-500 font-semibold text-sm px-3 py-1 hover:bg-blue-50 rounded transition duration-300">Login</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>  
+        </div>
     </nav>
 
     <div class="container">
@@ -129,9 +132,10 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Bundesliga Table -->
                 <div class="card">
-                    <h2>German Bundeliga Table 2024/25</h2>
+                    <h2>German Bundesliga Table 2024/25</h2>
                     <table>
                         <thead>
                             <tr>
@@ -164,7 +168,7 @@
                                 <td style="font-weight: bold">{{ standings.points }}</td>
                             </tr>
                             {% empty %}
-                            <tr><td>No EPL data available</td></tr>
+                            <tr><td>No Bundesliga data available</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -174,6 +178,8 @@
                             <span style="color: rgb(75, 85, 99)">Champions League</span>
                         </div>
                     </div>
+                </div>
+
                 <!-- Serie A Table -->
                 <div class="card">
                     <h2>Italian Serie A Table 2024/25</h2>
@@ -209,7 +215,7 @@
                                 <td style="font-weight: bold">{{ standings.points }}</td>
                             </tr>
                             {% empty %}
-                            <tr><td>No EPL data available</td></tr>
+                            <tr><td>No Serie A data available</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>
