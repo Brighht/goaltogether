@@ -9,19 +9,34 @@ body {
 /* New grid layout for leagues */
 .league-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); /* Two columns if space allows */
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Explicitly set 2 columns */
+    gap: 1.5rem; /* Default gap between rows and columns */
     margin: 0 auto;
     max-width: 1400px; /* Limit total width for large screens */
-    padding: 0 1rem;
+    padding: 0; /* Remove padding to eliminate unwanted left space */
+    box-sizing: border-box; /* Ensure padding/margin doesn't add extra space */
+}
+
+/* Responsive grid spacing */
+@media (max-width: 1200px) {
+    .league-grid {
+        gap: 1rem; /* Reduce gap on medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .league-grid {
+        gap: 0.75rem; /* Further reduce gap on smaller screens */
+    }
 }
 
 /* Navigation */
 nav {
     background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    min-height: 4rem;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
     width: 100%;
+    padding: 0.25rem 0;
+    margin-bottom: 0.75rem;
 }
 
 nav .max-w-6xl {
@@ -34,32 +49,35 @@ nav .flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 4rem;
-    padding: 0.5rem 0;
+    min-height: 2.5rem;
+    padding: 0.125rem 0;
 }
 
 nav .space-x-7 > * + * {
-    margin-left: 1.75rem;
+    margin-left: 1.5rem;
 }
 
-nav .space-x-1 > * + * {
-    margin-left: 0.25rem;
+nav .space-x-1 {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
 }
 
 nav .font-bold.text-xl.text-gray-800 {
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: rgb(31, 41, 55);
-    padding: 1rem 0;
+    padding: 0.25rem 0;
 }
 
 nav a.py-4.px-2 {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0.375rem;
     font-weight: 600;
     color: rgb(107, 114, 128);
     text-decoration: none;
     transition: color 0.3s;
     white-space: nowrap;
+    font-size: 0.875rem;
 }
 
 nav a.py-4.px-2:hover {
@@ -75,22 +93,22 @@ nav a.border-b-4.border-blue-500 {
 .profile-section {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 0;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
 }
 
 .profile-username {
     color: rgb(75, 85, 99);
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
 }
 
 .profile-link {
     color: rgb(59, 130, 246);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.875rem;
-    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
     transition: all 0.3s ease;
     border-radius: 0.25rem;
 }
@@ -103,31 +121,33 @@ nav a.border-b-4.border-blue-500 {
 /* Main content */
 .container {
     min-height: 20vh;
-    padding: 1rem 1rem; /* Ensure top padding */
-    margin-top: 1rem; /* Add space below navbar */
+    padding: 0.75rem;
+    margin: 0; /* Ensure no extra margin */
 }
 
 .content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0; /* Remove padding to align content */
 }
 
 h1, h2 {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
     font-weight: bold;
     text-align: center;
     color: rgb(17, 24, 39);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 /* Adjust card width and height for side-by-side display */
 .card {
     background-color: white;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    width: 100%;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0; /* Remove any margin to prevent extra space */
+    width: 100%; /* Ensure card takes full width of grid cell */
+    box-sizing: border-box; /* Prevent padding from adding extra width */
     overflow-x: auto;
 }
 
@@ -135,13 +155,14 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 500px;
+    margin: 0; /* Remove any default margin */
 }
 
 th {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     text-align: left;
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     font-weight: 500;
     text-transform: uppercase;
     color: rgb(107, 114, 128);
@@ -150,9 +171,9 @@ th {
 }
 
 td {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     white-space: nowrap;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: rgb(75, 85, 99);
     border-bottom: 1px solid rgb(229, 231, 235);
 }
@@ -163,42 +184,30 @@ tr:hover {
 
 /* Team crest styling */
 .team-crest {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     vertical-align: middle;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
 }
 
 /* Grid layouts */
 .grid {
     display: grid;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid-cols-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    gap: 1rem;
 }
 
 /* Stats and Teams cards */
 .stat-card {
     background-color: white;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 .stat-card h2 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .stat-list {
@@ -211,36 +220,36 @@ tr:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Blog styles */
 .blog-post {
     background-color: white;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 .blog-content {
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .blog-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
 }
 
 .blog-date {
     color: rgb(107, 114, 128);
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .blog-excerpt {
     color: rgb(75, 85, 99);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .blog-link {
@@ -254,23 +263,23 @@ tr:hover {
 
 /* Banter section */
 .banter-form {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .banter-textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.375rem;
     border: 1px solid rgb(209, 213, 219);
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
     resize: vertical;
 }
 
 .banter-button {
     background-color: rgb(59, 130, 246);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
     border: none;
     cursor: pointer;
 }
@@ -280,7 +289,7 @@ tr:hover {
 }
 
 .banter-post {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .banter-user {
@@ -290,17 +299,17 @@ tr:hover {
 
 .banter-time {
     color: rgb(107, 114, 128);
-    font-size: 0.875rem;
-    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
 }
 
 .banter-actions {
-    margin-top: 0.5rem;
+    margin-top: 0.375rem;
 }
 
 .banter-action {
     color: rgb(107, 114, 128);
-    margin-right: 1rem;
+    margin-right: 0.75rem;
     cursor: pointer;
 }
 
@@ -309,13 +318,13 @@ tr:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) { /* Changed from 1300px to 1024px for better desktop behavior */
+@media (max-width: 1024px) {
     .league-grid {
         grid-template-columns: 1fr; /* Stack on tablets and smaller */
     }
 
     .card {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     nav .flex {
@@ -326,13 +335,14 @@ tr:hover {
     nav .space-x-1 {
         width: 100%;
         justify-content: flex-start;
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
+        gap: 0.5rem;
     }
 
     .profile-section {
         width: 100%;
         justify-content: flex-end;
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
     }
 }
 
@@ -342,7 +352,11 @@ tr:hover {
     }
 
     .team-crest {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
+    }
+
+    nav .space-x-1 {
+        gap: 0.375rem;
     }
 }

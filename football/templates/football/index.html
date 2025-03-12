@@ -17,6 +17,8 @@
                         <span class="font-bold text-xl text-gray-800">{{ logo }}</span>
                     </div>
                     <div class="flex items-center space-x-1">
+                        <!-- Dynamic league name -->
+                        <span class="font-bold text-gray-800">{{ current_league }}</span>
                         <a href="{% url 'index' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Table</a>
                         <a href="{% url 'stats' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/stats/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Stats</a>
                         <a href="{% url 'teams' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300 border-b-4 {% if request.path == '/teams/' %}border-blue-500 text-blue-500{% else %}border-transparent{% endif %}">Teams</a>
