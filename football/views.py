@@ -1,19 +1,21 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .import api_call
-import time
+
 
 # Create your views here.
 def login(request):
     return render(request, 'football/login.html')
 def home(request):
-    league_id = "PD"
     laliga_standing = api_call.get_standings(2014, 2024)
-    time.sleep(2)
     epl_standing = api_call.get_standings(2021, 2024)
+    bundesliga_standing = api_call.get_standings(2002, 2024)
+    serie_a_standing = api_call.get_standings(2019, 2024)
     return render(request, 'football/index.html', {
-        'la_liga_standing': laliga_standing,
-        'epl_standing': epl_standing
+        'laliga_standing': laliga_standing,
+        'epl_standing': epl_standing,
+        'bundesliga_standing': bundesliga_standing,
+        'serie_a_standing':serie_a_standing
     })  
 
 def stats(request):

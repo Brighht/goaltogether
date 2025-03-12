@@ -81,7 +81,7 @@ def get_standings(league_id, season):
     },
 
     """
-    url = f'http://api.football-data.org/v4/competitions/{league_id}//standings?season={season}' #
+    url = f'http://api.football-data.org/v4/competitions/{league_id}/standings?season={season}' #
     api_key = settings.FOOTBALL_DATA_KEY
     headers = {'X-Auth-Token': api_key}
     
@@ -90,8 +90,8 @@ def get_standings(league_id, season):
         response.raise_for_status()  # Raises exception for 4xx/5xx errors
         
         api_response = response.json()
-        league_standing = api_response.get("standings", [{}])[0].get("table", [])
-        # print(f"League {league_id} - Status: {response.status_code}, Table: {league_standing}")
+        league_standing = api_response['standings'][0]['table']
+        print(f"League {league_id} - Status: {response.status_code}, Table: {league_standing}")
         return league_standing
     
     except requests.RequestException as e:

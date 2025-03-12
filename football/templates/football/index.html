@@ -129,6 +129,97 @@
                         </div>
                     </div>
                 </div>
+                <!-- Bundesliga Table -->
+                <div class="card">
+                    <h2>German Bundeliga Table 2024/25</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th></th>
+                                <th>Club</th>
+                                <th>MP</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for standings in bundesliga_standing %}
+                            <tr>
+                                <td style="color: rgb(59, 130, 246)">{{ standings.position }}</td>
+                                <td><img src="{{ standings.team.crest }}" class="team-crest"></td>
+                                <td style="font-weight: 500">{{ standings.team.name }}</td>
+                                <td>{{ standings.playedGames }}</td>
+                                <td>{{ standings.won }}</td>
+                                <td>{{ standings.draw }}</td>
+                                <td>{{ standings.lost }}</td>
+                                <td>{{ standings.goalsFor }}</td>
+                                <td>{{ standings.goalsAgainst }}</td>
+                                <td>{{ standings.goalDifference }}</td>
+                                <td style="font-weight: bold">{{ standings.points }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td>No EPL data available</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: rgb(239, 246, 255); border: 1px solid rgb(229, 231, 235); width: 12px; height: 12px; border-radius: 2px; display: inline-block; margin-right: 8px;"></div>
+                            <span style="color: rgb(75, 85, 99)">Champions League</span>
+                        </div>
+                    </div>
+                <!-- Serie A Table -->
+                <div class="card">
+                    <h2>Italian Serie A Table 2024/25</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th></th>
+                                <th>Club</th>
+                                <th>MP</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for standings in serie_a_standing %}
+                            <tr>
+                                <td style="color: rgb(59, 130, 246)">{{ standings.position }}</td>
+                                <td><img src="{{ standings.team.crest }}" class="team-crest"></td>
+                                <td style="font-weight: 500">{{ standings.team.name }}</td>
+                                <td>{{ standings.playedGames }}</td>
+                                <td>{{ standings.won }}</td>
+                                <td>{{ standings.draw }}</td>
+                                <td>{{ standings.lost }}</td>
+                                <td>{{ standings.goalsFor }}</td>
+                                <td>{{ standings.goalsAgainst }}</td>
+                                <td>{{ standings.goalDifference }}</td>
+                                <td style="font-weight: bold">{{ standings.points }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td>No EPL data available</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: rgb(239, 246, 255); border: 1px solid rgb(229, 231, 235); width: 12px; height: 12px; border-radius: 2px; display: inline-block; margin-right: 8px;"></div>
+                            <span style="color: rgb(75, 85, 99)">Champions League</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
