@@ -19,3 +19,7 @@ A fun football web app for me and my friends to track our games, share updates, 
 
 ## Progress
 - Building
+  - Completed Tasks
+   - [ ] Live Standings of Top 5 leagues
+   - [ ] Api calls
+   - [ ] base html
