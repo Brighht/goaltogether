@@ -100,3 +100,23 @@ def get_standings(league_id, season):
     except (KeyError, IndexError, ValueError) as e:
         print(f"Error parsing standings for league {league_id}: {e}")
         return []
+
+def fetch_scorers(league_id):
+    url = f'http://api.football-data.org/v4/competitions/{league_id}/scorers'
+    headers = {'X-Auth-Token': settings.FOOTBALL_DATA_KEY}
+    
+    try:
+        response = requests.get(url=url, headers=headers)
+        response.raise_for_status()
+        
+        scorer_data = response.json()
+        scorers_arr = scorer_data['scorers'][0]
+        print(f"Status: {response.status_code} - Scorers : {scorers_arr}" )
+        return scorers_arr
+
+    except requests.RequestException as e:
+        print(f"Error fetching scorers for league {league_id}: {e}")
+        return []
+# def stats(selected_league):
+#     context = {'selected_league' : selected_league,
+#                'laliga' : api}

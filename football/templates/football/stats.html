@@ -1,74 +1,228 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier League Stats</title>
+    <title>{{ selected_league }} Stats</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            color: gray;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <nav class="bg-white shadow-lg">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between">
-                <div class="flex space-x-7">
-                    <div class="flex items-center py-4">
-                        <span class="font-bold text-xl text-gray-800">{Current} League</span>
-                    </div>
+            <div class="flex justify-between items-center py-2">
+                <div class="flex space-x-7 items-center">
+                    <span class="font-bold text-xl text-gray-800">{{ selected_league }} League</span>
                     <div class="flex items-center space-x-1">
-                        <a href="{% url 'index' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Table</a>
-                        <a href="{% url 'stats' %}" class="py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-semibold">Stats</a>
-                        <a href="{% url 'teams' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Teams</a>
-                        <a href="{% url 'blog' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
-                        <a href="{% url 'banter' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Banter</a>
+                        <a href="{% url 'index' %}" class="py-2 px-3 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Table</a>
+                        <a href="{% url 'stats' %}" class="py-2 px-3 text-blue-500 border-b-4 border-blue-500 font-semibold">Stats</a>
+                        <a href="{% url 'teams' %}" class="py-2 px-3 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Teams</a>
+                        <a href="{% url 'blog' %}" class="py-2 px-3 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+                        <a href="{% url 'banter' %}" class="py-2 px-3 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Banter</a>
                     </div>
+                </div>
+                <div class="profile-section flex items-center space-x-3">
+                    {% if user.is_authenticated %}
+                        <span class="profile-username text-gray-600 font-medium text-sm">{{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="profile-link text-blue-500 font-semibold text-sm px-3 py-1 hover:bg-blue-50 rounded transition duration-300">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="profile-link text-blue-500 font-semibold text-sm px-3 py-1 hover:bg-blue-50 rounded transition duration-300">Login</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">League Statistics</h1>
-            
+    <div class="min-h-screen py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- League Selection Tabs -->
+            <div class="mb-6">
+                <div class="flex space-x-4 border-b">
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'La Liga' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="La Liga">La Liga</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Premier League' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Premier League">Premier League</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Bundesliga' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Bundesliga">Bundesliga</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Serie A' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Serie A">Serie A</button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading" id="loading">Loading league data...</div>
+
+            <!-- League Statistics Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white shadow-lg rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4">Top Scorers</h2>
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'La Liga' or selected_league == '' %}active{% endif %}" id="La Liga">
+                    <h2 class="text-xl font-semibold mb-4">Top Scorers - La Liga</h2>
                     <ul class="space-y-3">
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Erling Haaland</span>
-                            <span class="font-bold">17 goals</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Mohamed Salah</span>
-                            <span class="font-bold">15 goals</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Ollie Watkins</span>
-                            <span class="font-bold">13 goals</span>
-                        </li>
+                        {% for scorer in laliga_scorers %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ scorer.player.name }}</span>
+                                <span class="font-bold">{{ scorer.goals }} goals</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No top scorers data available.</li>
+                        {% endfor %}
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4">Most Assists</h2>
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'La Liga' or selected_league == '' %}active{% endif %}" id="La Liga-assists">
+                    <h2 class="text-xl font-semibold mb-4">Most Assists - La Liga</h2>
                     <ul class="space-y-3">
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Ollie Watkins</span>
-                            <span class="font-bold">10 assists</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Pascal Gross</span>
-                            <span class="font-bold">9 assists</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-800">Bukayo Saka</span>
-                            <span class="font-bold">8 assists</span>
-                        </li>
+                        {% for assist in laliga_assists %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ assist.player_name }}</span>
+                                <span class="font-bold">{{ assist.assists }} assists</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No assists data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Premier League' %}active{% endif %}" id="Premier League">
+                    <h2 class="text-xl font-semibold mb-4">Top Scorers - Premier League</h2>
+                    <ul class="space-y-3">
+                        {% for scorer in epl_scorers %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ scorer.player_name }}</span>
+                                <span class="font-bold">{{ scorer.goals }} goals</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No top scorers data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Premier League' %}active{% endif %}" id="Premier League-assists">
+                    <h2 class="text-xl font-semibold mb-4">Most Assists - Premier League</h2>
+                    <ul class="space-y-3">
+                        {% for assist in epl_assists %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ assist.player_name }}</span>
+                                <span class="font-bold">{{ assist.assists }} assists</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No assists data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Bundesliga' %}active{% endif %}" id="Bundesliga">
+                    <h2 class="text-xl font-semibold mb-4">Top Scorers - Bundesliga</h2>
+                    <ul class="space-y-3">
+                        {% for scorer in bundesliga_scorers %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ scorer.player }}</span>
+                                <span class="font-bold">{{ scorer.goals }} goals</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No top scorers data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Bundesliga' %}active{% endif %}" id="Bundesliga-assists">
+                    <h2 class="text-xl font-semibold mb-4">Most Assists - Bundesliga</h2>
+                    <ul class="space-y-3">
+                        {% for assist in bundesliga_assists %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ assist.player_name }}</span>
+                                <span class="font-bold">{{ assist.assists }} assists</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No assists data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Serie A' %}active{% endif %}" id="Serie A">
+                    <h2 class="text-xl font-semibold mb-4">Top Scorers - Serie A</h2>
+                    <ul class="space-y-3">
+                        {% for scorer in serie_a_scorers %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ scorer.player_name }}</span>
+                                <span class="font-bold">{{ scorer.goals }} goals</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No top scorers data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Serie A' %}active{% endif %}" id="Serie A-assists">
+                    <h2 class="text-xl font-semibold mb-4">Most Assists - Serie A</h2>
+                    <ul class="space-y-3">
+                        {% for assist in serie_a_assists %}
+                            <li class="flex justify-between items-center">
+                                <span class="text-gray-800">{{ assist.player_name }}</span>
+                                <span class="font-bold">{{ assist.assists }} assists</span>
+                            </li>
+                        {% empty %}
+                            <li class="text-gray-500">No assists data available.</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
+
+            <!-- Refresh Button -->
+            <div class="text-center mt-6">
+                <button id="refreshData" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">Refresh Data</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Tab switching functionality
+            $('.tab-button').click(function() {
+                const league = $(this).data('league');
+                $('.tab-button').removeClass('text-blue-500 border-b-2 border-blue-500').addClass('text-gray-500');
+                $(this).addClass('text-blue-500 border-b-2 border-blue-500');
+                
+                // Show loading state
+                $('#loading').show();
+                $('.tab-content').removeClass('active');
+
+                // Simulate data loading delay (replace with actual AJAX if needed)
+                setTimeout(function() {
+                    $(`#${league}`).addClass('active');
+                    $(`#${league}-assists`).addClass('active');
+                    $('#loading').hide();
+
+                    // Update page title and league name dynamically
+                    document.title = `${league} Stats`;
+                    $('.font-bold.text-xl.text-gray-800').text(`${league} League`);
+                }, 500); // 500ms delay for loading effect
+            });
+
+            // Refresh data button
+            $('#refreshData').click(function() {
+                $('#loading').show();
+                setTimeout(function() {
+                    // Simulate refresh (replace with actual data refresh logic)
+                    alert('Data refreshed! (Simulated)');
+                    $('#loading').hide();
+                }, 500);
+            });
+
+            // Set default active tab based on selected_league
+            $(`.tab-button[data-league="${ '{{ selected_league|safe }}' }"]`).trigger('click');
+        });
+    </script>
 </body>
 </html>
