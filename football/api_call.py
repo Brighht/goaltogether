@@ -110,7 +110,11 @@ def fetch_scorers(league_id):
         response.raise_for_status()
         
         scorer_data = response.json()
-        scorers_arr = scorer_data['scorers'][0]
+        if 'scorers' in scorer_data:
+            scorers_arr = scorer_data['scorers']
+        else: 
+            []
+        
         print(f"Status: {response.status_code} - Scorers : {scorers_arr}" )
         return scorers_arr
 
