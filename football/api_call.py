@@ -101,19 +101,19 @@ def get_standings(league_id, season):
         print(f"Error parsing standings for league {league_id}: {e}")
         return []
 
-def fetch_scorers(league_id):
+def fetch_scorers(league_id, season):
     url = f'http://api.football-data.org/v4/competitions/{league_id}/scorers'
     headers = {'X-Auth-Token': settings.FOOTBALL_DATA_KEY}
     
     try:
-        response = requests.get(url=url, headers=headers)
+        response = requests.get(url=url, headers=headers, params={'season': season})
         response.raise_for_status()
         
         scorer_data = response.json()
         if 'scorers' in scorer_data:
             scorers_arr = scorer_data['scorers']
         else: 
-            []
+            scorers_arr = []
         
         print(f"Status: {response.status_code} - Scorers : {scorers_arr}" )
         return scorers_arr

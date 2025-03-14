@@ -19,16 +19,17 @@ def home(request):
     })  
 
 def stats(request):
-    laliga_scorers = api_call.fetch_scorers(2014)
-    epl_scorers = api_call.fetch_scorers(2021)
-    bundeliga_scorers = api_call.fetch_scorers(2002)
-    serie_a_scorers = api_call.fetch_scorers(2019)
+    laliga_scorers = api_call.fetch_scorers(2014, 2024)
+    epl_scorers = api_call.fetch_scorers(2021,2024)
+    bundeliga_scorers = api_call.fetch_scorers(2002,2024)
+    serie_a_scorers = api_call.fetch_scorers(2019,2024)
 
     return render(request, 'football/stats.html',
                   {'laliga_scorers': laliga_scorers,
                   'epl_scorers': epl_scorers,
                   'bundesliga_scorers': bundeliga_scorers,
-                  'serie_a_scorers': serie_a_scorers})
+                  'serie_a_scorers': serie_a_scorers,
+                  'selected_league': request.GET.get('league', 'Serie A')})
 
 
 def teams(request):

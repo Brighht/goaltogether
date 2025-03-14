@@ -127,7 +127,7 @@
                     <ul class="space-y-3">
                         {% for scorer in bundesliga_scorers %}
                             <li class="flex justify-between items-center">
-                                <span class="text-gray-800 font-bold">{{ scorer.player.name }}</span>
+                                <span class="text-gray-800">{{ scorer.player.name }}</span>
                                 <span class="font-bold">{{ scorer.goals }} goals</span>
                             </li>
                         {% empty %}
@@ -155,7 +155,7 @@
                     <ul class="space-y-3">
                         {% for scorer in serie_a_scorers %}
                             <li class="flex justify-between items-center">
-                                <span class="text-gray-800">{{ scorer.player_name }}</span>
+                                <span class="text-gray-800">{{ scorer.player.name }}</span>
                                 <span class="font-bold">{{ scorer.goals }} goals</span>
                             </li>
                         {% empty %}
