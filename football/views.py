@@ -19,17 +19,27 @@ def home(request):
     })  
 
 def stats(request):
-    laliga_scorers = api_call.fetch_scorers(2014, 2024)
-    epl_scorers = api_call.fetch_scorers(2021,2024)
-    bundeliga_scorers = api_call.fetch_scorers(2002,2024)
-    serie_a_scorers = api_call.fetch_scorers(2019,2024)
+    league_mapping = {
+        'laliga': 'La Liga',
+        'premierleague': 'Premier League',
+        'bundesliga': 'Bundesliga',
+        'seriea': 'Serie A'
+    }
+    selected_league = league_mapping.get(request.GET.get('league', 'laliga'), 'La Liga')
+    print(f"Selected League: {selected_league}")  # Debug
 
-    return render(request, 'football/stats.html',
-                  {'laliga_scorers': laliga_scorers,
-                  'epl_scorers': epl_scorers,
-                  'bundesliga_scorers': bundeliga_scorers,
-                  'serie_a_scorers': serie_a_scorers,
-                  'selected_league': request.GET.get('league', 'Serie A')})
+    laliga_scorers = api_call.fetch_scorers(2014, 2024)
+    epl_scorers = api_call.fetch_scorers(2021, 2024)
+    bundesliga_scorers = api_call.fetch_scorers(2002, 2024)
+    serie_a_scorers = api_call.fetch_scorers(2019, 2024)
+
+    return render(request, 'football/stats.html', {
+        'laliga_scorers': laliga_scorers,
+        'epl_scorers': epl_scorers,
+        'bundesliga_scorers': bundesliga_scorers,
+        'serie_a_scorers': serie_a_scorers,
+        'selected_league': selected_league
+    })
 
 
 def teams(request):

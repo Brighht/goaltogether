@@ -54,10 +54,10 @@
             <!-- League Selection Tabs -->
             <div class="mb-6">
                 <div class="flex space-x-4 border-b">
-                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'La Liga' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="La Liga">La Liga</button>
-                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Premier League' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Premier League">Premier League</button>
-                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Bundesliga' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Bundesliga">Bundesliga</button>
-                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none {% if selected_league == 'Serie A' %}text-blue-500 border-b-2 border-blue-500{% endif %}" data-league="Serie A">Serie A</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none" data-league="La Liga">La Liga</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none" data-league="Premier League">Premier League</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none" data-league="Bundesliga">Bundesliga</button>
+                    <button class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-blue-500 focus:outline-none" data-league="Serie A">Serie A</button>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
 
             <!-- League Statistics Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'La Liga' or selected_league == '' %}active{% endif %}" id="La Liga">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="La Liga">
                     <h2 class="text-xl font-semibold mb-4">Top Scorers - La Liga</h2>
                     <ul class="space-y-3">
                         {% for scorer in laliga_scorers %}
@@ -80,12 +80,12 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'La Liga' or selected_league == '' %}active{% endif %}" id="La Liga-assists">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="La Liga-assists">
                     <h2 class="text-xl font-semibold mb-4">Most Assists - La Liga</h2>
                     <ul class="space-y-3">
                         {% for assist in laliga_assists %}
                             <li class="flex justify-between items-center">
-                                <span class="text-gray-800">{{ assist.player_name }}</span>
+                                <span class="text-gray-800">{{ assist.player.name }}</span>
                                 <span class="font-bold">{{ assist.assists }} assists</span>
                             </li>
                         {% empty %}
@@ -94,7 +94,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Premier League' %}active{% endif %}" id="Premier League">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Premier League">
                     <h2 class="text-xl font-semibold mb-4">Top Scorers - Premier League</h2>
                     <ul class="space-y-3">
                         {% for scorer in epl_scorers %}
@@ -108,7 +108,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Premier League' %}active{% endif %}" id="Premier League-assists">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Premier League-assists">
                     <h2 class="text-xl font-semibold mb-4">Most Assists - Premier League</h2>
                     <ul class="space-y-3">
                         {% for assist in epl_assists %}
@@ -122,7 +122,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Bundesliga' %}active{% endif %}" id="Bundesliga">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Bundesliga">
                     <h2 class="text-xl font-semibold mb-4">Top Scorers - Bundesliga</h2>
                     <ul class="space-y-3">
                         {% for scorer in bundesliga_scorers %}
@@ -136,7 +136,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Bundesliga' %}active{% endif %}" id="Bundesliga-assists">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Bundesliga-assists">
                     <h2 class="text-xl font-semibold mb-4">Most Assists - Bundesliga</h2>
                     <ul class="space-y-3">
                         {% for assist in bundesliga_assists %}
@@ -150,7 +150,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Serie A' %}active{% endif %}" id="Serie A">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Serie A">
                     <h2 class="text-xl font-semibold mb-4">Top Scorers - Serie A</h2>
                     <ul class="space-y-3">
                         {% for scorer in serie_a_scorers %}
@@ -164,7 +164,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-white shadow-lg rounded-lg p-6 tab-content {% if selected_league == 'Serie A' %}active{% endif %}" id="Serie A-assists">
+                <div class="bg-white shadow-lg rounded-lg p-6 tab-content" id="Serie A-assists">
                     <h2 class="text-xl font-semibold mb-4">Most Assists - Serie A</h2>
                     <ul class="space-y-3">
                         {% for assist in serie_a_assists %}
@@ -198,7 +198,7 @@
                 $('#loading').show();
                 $('.tab-content').removeClass('active');
 
-                // Simulate data loading delay (replace with actual AJAX if needed)
+                // Activate the clicked league's tab
                 setTimeout(function() {
                     $(`#${league}`).addClass('active');
                     $(`#${league}-assists`).addClass('active');
@@ -207,21 +207,24 @@
                     // Update page title and league name dynamically
                     document.title = `${league} Stats`;
                     $('.font-bold.text-xl.text-gray-800').text(`${league} League`);
-                }, 500); // 500ms delay for loading effect
+                }, 500);
             });
 
             // Refresh data button
             $('#refreshData').click(function() {
                 $('#loading').show();
                 setTimeout(function() {
-                    // Simulate refresh (replace with actual data refresh logic)
                     alert('Data refreshed! (Simulated)');
                     $('#loading').hide();
                 }, 500);
             });
 
             // Set default active tab based on selected_league
-            $(`.tab-button[data-league="${ '{{ selected_league|safe }}' }"]`).trigger('click');
+            const selectedLeague = "{{ selected_league|safe }}";
+            console.log("Selected League from Template:", selectedLeague);
+            const validLeagues = ['La Liga', 'Premier League', 'Bundesliga', 'Serie A'];
+            const defaultLeague = validLeagues.includes(selectedLeague) ? selectedLeague : 'La Liga';
+            $(`.tab-button[data-league="${defaultLeague}"]`).trigger('click');
         });
     </script>
 </body>
