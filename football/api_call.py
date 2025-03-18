@@ -115,7 +115,7 @@ def fetch_scorers(league_id, season):
         else:
             scorers_arr = []
         
-        # print(f"Status: {response.status_code} - Scorers for {league_id}: {scorers_arr}")
+        print(f"Status: {response.status_code} - Scorers for {league_id}: {scorers_arr}")
         return scorers_arr
 
     except requests.RequestException as e:
